@@ -14,9 +14,15 @@ class App extends React.Component {
     NativeModules.NativeCommunication.sendHTMLPath('/Check/demo.html');
   };
 
-  tapHere2 = () => {
-    NativeModules.NativeCommunication.sendHTMLPath('/Check/test.html');
-  };
+  // tapHere2 = () => {
+  //   NativeModules.NativeCommunication.sendHTMLPath('/Check/test.pdf');
+  // };
+
+  // tapHere3 = () => {
+  //   NativeModules.NativeCommunication.sendHTMLPath(
+  //     '/Check/test-presentation.pptx',
+  //   );
+  // };
 
   componentDidMount() {
     // const AddRatingManagerEvent = new NativeEventEmitter(NativeCommunication);
@@ -31,15 +37,17 @@ class App extends React.Component {
       <View style={{flex: 1, paddingTop: 100}}>
         <Button
           onPress={this.tapHere1}
-          title="Open Demo HTML"
+          title="Open Document Picker"
           color="#FF6347"
         />
 
+        {/* <Button onPress={this.tapHere2} title="Open Test PDF" color="#FF6347" />
+
         <Button
-          onPress={this.tapHere2}
-          title="Open Test HTML"
+          onPress={this.tapHere3}
+          title="Open Test Presentation"
           color="#FF6347"
-        />
+        /> */}
       </View>
     );
   }
