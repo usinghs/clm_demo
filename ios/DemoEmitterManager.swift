@@ -4,7 +4,7 @@ import Foundation
 public class DemoEmitterManager {
     
     struct Constants {
-        static let urlHostName = "deeplinkEvent"
+        static let urlHostName = "sendKPIEvent"
     }
     
     /// Open deeplink url

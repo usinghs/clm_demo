@@ -4,7 +4,7 @@ import Foundation
 class DemoEmitter {
 
     struct Constants {
-        static let openEventName = "deeplinkEvent"
+        static let openEventName = "sendKPIEvent"
     }
     
     /// Shared Instance.
