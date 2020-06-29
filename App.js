@@ -3,12 +3,56 @@
  */
 
 import * as React from 'react';
-import {View, NativeModules, Button} from 'react-native';
+import {View, NativeModules, Button, NativeEventEmitter} from 'react-native';
+import {DemoEmitterModule} from './DemoEmitterModule';
+
+const DemoModuleEmitter = new NativeEventEmitter(DemoEmitterModule);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount() {
+    // Handle deeplink
+    this.kpiSubscription = DemoModuleEmitter.addListener(
+      'sendKPIEvent',
+      this._handleDeepLink,
+    );
+  }
+
+  _handleDeepLink = (payloadObject) => {
+    if (!payloadObject) {
+      return;
+    }
+
+    let payloadVal;
+
+    // // This is required as Android sends notification data using Map with key as payload
+    // if (isAndroid) {
+    //   payloadVal = JSON.parse(payloadObject.payload);
+    // }
+    // const payload = payloadVal ? payloadVal : payloadObject;
+
+    // const businessUnitId = get(payloadObject, 'businessUnitId', '');
+    // const pushNotifyAgentGroupId = get(payload, 'agentGroupId', '');
+    // if (
+    //   (payloadObject &&
+    //     payloadObject.payload &&
+    //     payloadObject.payload.includes('businessUnitId')) ||
+    //   businessUnitId.length > 0
+    // ) {
+    //   this.props.setDeeplinkStates(
+    //     true,
+    //     routes.NUANCE_LIVE_CHAT_DeepLink,
+    //     pushNotifyAgentGroupId
+    //   );
+    //   return;
+    // }
+    // if (payload.action === 'DEEPLINK') {
+    //   this.props.setDeeplinkStates(true, payload.value);
+    // }
+  };
 
   tapHere1 = () => {
     NativeModules.NativeCommunication.sendHTMLPath('/Check/demo.html');
@@ -24,12 +68,12 @@ class App extends React.Component {
   //   );
   // };
 
-  componentDidMount() {
-    // const AddRatingManagerEvent = new NativeEventEmitter(NativeCommunication);
-    // this._subscription = AddRatingManagerEvent.addListener('onclose', info => {
-    //   console.log('from Native  json ===', JSON.stringify(info));
-    // });
-  }
+  // componentDidMount() {
+  //   // const AddRatingManagerEvent = new NativeEventEmitter(NativeCommunication);
+  //   // this._subscription = AddRatingManagerEvent.addListener('onclose', info => {
+  //   //   console.log('from Native  json ===', JSON.stringify(info));
+  //   // });
+  // }
 
   render() {
     return (
