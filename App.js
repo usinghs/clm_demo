@@ -143,16 +143,16 @@ class App extends React.Component {
           title="Open Test Presentation"
           color="#FF6347"
         /> */}
-        {/* <Button
-          onPress={this.readFileDirectory}
+        <Button
+          onPress={this.readFileDirectory()}
           title="Read file directory"
           color="#FF6347"
-        /> */}
-        <FlatList
+        />
+        {/* <FlatList
           data={this.getFilePaths}
           renderItem={this.renderItem()}
           keyExtractor={(item) => item.key}
-        />
+        /> */}
       </View>
     );
   }

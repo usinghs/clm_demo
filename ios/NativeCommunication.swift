@@ -19,16 +19,16 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
     print("htmlpath from RN===",htmlpath as Any)
      
     // This is Native UIDocumentMenuViewController open
-    DispatchQueue.main.async {
-        let documentProviderMenu: UIDocumentMenuViewController = UIDocumentMenuViewController(documentTypes: ["public.data"], in: .import)
-        documentProviderMenu.modalPresentationStyle = .formSheet
-        documentProviderMenu.popoverPresentationController?.sourceView = self.view
-        documentProviderMenu.popoverPresentationController?.sourceRect = self.view.bounds
-        documentProviderMenu.delegate = self
-        let appDelegate = UIApplication.shared.delegate
-        let controller = appDelegate?.window??.rootViewController
-        controller!.present(documentProviderMenu, animated: true, completion: nil)
-    }
+//    DispatchQueue.main.async {
+//        let documentProviderMenu: UIDocumentMenuViewController = UIDocumentMenuViewController(documentTypes: ["public.data"], in: .import)
+//        documentProviderMenu.modalPresentationStyle = .formSheet
+//        documentProviderMenu.popoverPresentationController?.sourceView = self.view
+//        documentProviderMenu.popoverPresentationController?.sourceRect = self.view.bounds
+//        documentProviderMenu.delegate = self
+//        let appDelegate = UIApplication.shared.delegate
+//        let controller = appDelegate?.window??.rootViewController
+//        controller!.present(documentProviderMenu, animated: true, completion: nil)
+//    }
     
     // This is logic to get the file path from iOS File manager and load in to WKWebview.
     let fromRNFilePathStr: String = htmlpath!
@@ -40,7 +40,7 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
       replacedPath = initialFilePath.replacingOccurrences(of: "/Documents", with: fromRNFilePathStr)
      print("replaced path:", replacedPath)
     }
-    let finalURL = URL(string:"file://" + replacedPath)
+    let finalURL = URL(string:"file://" + "Users/singhshu/Library/Developer/CoreSimulator/Devices/B9AFCC6A-8F96-4A5B-B681-290CEF5B28EB/data/Containers/Data/Application/8441652D-C707-408E-980E-D093BAA15F1D/Documents/a3E6F000000gcLIUAY/index.html")
     print("finalURL ===", finalURL!)
           DispatchQueue.main.async { [weak self] in
             let appDelegate = UIApplication.shared.delegate
