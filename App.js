@@ -3,8 +3,16 @@
  */
 
 import * as React from 'react';
-import {View, NativeModules, Button, NativeEventEmitter} from 'react-native';
+import {
+  View,
+  NativeModules,
+  Button,
+  NativeEventEmitter,
+  FlatList,
+  Text,
+} from 'react-native';
 // import {DemoEmitterModule} from './DemoEmitterModule';
+import * as RNFS from 'react-native-fs';
 
 const DemoEmitterModule = NativeModules.DemoEmitterModule1;
 const DemoModuleEmitter = new NativeEventEmitter(DemoEmitterModule);
@@ -63,6 +71,18 @@ class App extends React.Component {
     NativeModules.NativeCommunication.getDataFromRN('{"tag": "hello"}');
   };
 
+  readFileDirectory = () => {
+    //readDir(dirpath: string)
+    RNFS.readDir(RNFS.DocumentDirectoryPath)
+      .then((files) => {
+        console.log('files', files);
+        console.log('Path', RNFS.DocumentDirectoryPath);
+      })
+      .catch((err) => {
+        console.log(err.message, err.code);
+      });
+  };
+
   // tapHere2 = () => {
   //   NativeModules.NativeCommunication.sendHTMLPath('/Check/test.pdf');
   // };
@@ -79,6 +99,30 @@ class App extends React.Component {
   //   //   console.log('from Native  json ===', JSON.stringify(info));
   //   // });
   // }
+
+  renderItem = (item, index) => {
+    console.log('item', item);
+    <View>
+      <Text>item.name</Text>
+      <Text>item.path</Text>
+    </View>;
+    return item;
+  };
+
+  getFilePaths = () => {
+    let filesValue;
+    RNFS.readDir(RNFS.DocumentDirectoryPath)
+      .then((files) => {
+        console.log('files', files);
+        console.log('Path', RNFS.DocumentDirectoryPath);
+        return files;
+      })
+      .catch((err) => {
+        console.log(err.message, err.code);
+      });
+
+    // return filesValue;
+  };
 
   render() {
     return (
@@ -99,6 +143,16 @@ class App extends React.Component {
           title="Open Test Presentation"
           color="#FF6347"
         /> */}
+        {/* <Button
+          onPress={this.readFileDirectory}
+          title="Read file directory"
+          color="#FF6347"
+        /> */}
+        <FlatList
+          data={this.getFilePaths}
+          renderItem={this.renderItem()}
+          keyExtractor={(item) => item.key}
+        />
       </View>
     );
   }
