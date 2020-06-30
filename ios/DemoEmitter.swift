@@ -32,6 +32,7 @@ class DemoEmitter {
     ///
     /// - Parameter deeplink: navigation target
     func open(deeplink: String) -> Bool {
+        print("Open",deeplink as Any)
         if
 			let url = URL(string: deeplink),
             let params = url.queryParameters,

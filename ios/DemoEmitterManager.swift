@@ -1,17 +1,17 @@
 import Foundation
 
 /// DemoEmitterManager Swift class
+@objc(DemoEmitterModule)
 public class DemoEmitterManager {
     
     struct Constants {
         static let urlHostName = "sendKPIEvent"
     }
     
-    /// Open deeplink url
-    ///
-    /// - Parameter url: deeplink
-    /// - Returns: deeplinking succeeded
-    public static func open(deeplink url: URL) -> Bool {
+    
+    @objc public static func open(deeplink url: URL) -> Bool {
+
+        print("Open",deeplink as Any)
         guard url.host == Constants.urlHostName else {
             return false
         }

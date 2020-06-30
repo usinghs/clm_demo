@@ -14,14 +14,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // Handle deeplink
     this.kpiSubscription = DemoModuleEmitter.addListener(
       'sendKPIEvent',
-      this._handleDeepLink,
+      this._handleDemoEmitterLink,
     );
   }
 
-  _handleDeepLink = (payloadObject) => {
+  _handleDemoEmitterLink = (payloadObject) => {
     if (!payloadObject) {
       return;
     }
@@ -58,6 +57,10 @@ class App extends React.Component {
     NativeModules.NativeCommunication.sendHTMLPath('/Check/demo.html');
   };
 
+  tapHere2 = () => {
+    NativeModules.DemoEmitterModule.open('{"test":"hello"}');
+  };
+
   // tapHere2 = () => {
   //   NativeModules.NativeCommunication.sendHTMLPath('/Check/test.pdf');
   // };
@@ -84,6 +87,8 @@ class App extends React.Component {
           title="Open Document Picker"
           color="#FF6347"
         />
+
+        <Button onPress={this.tapHere2} title="Open" color="#FF6347" />
 
         {/* <Button onPress={this.tapHere2} title="Open Test PDF" color="#FF6347" />
 
