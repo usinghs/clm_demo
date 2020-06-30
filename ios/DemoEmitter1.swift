@@ -31,30 +31,27 @@ class DemoEmitter1 {
     /// Open deeplink
     ///
     /// - Parameter deeplink: navigation target
-    func open(demoValue: String) -> Bool {
-        print("Open",demoValue as Any)
-        if
-      let url = URL(string: demoValue),
-            let params = url.queryParameters,
-            let payload = params["payload"],
-            let payloadData = payload.data(using: .utf8),
-            let payloadDict = try? JSONSerialization.jsonObject(with: payloadData, options: [])
-        {
-      if
-        let module = DemoEmitter1.demoEmitterModule,
+    func sendDataToRN(demoValue: String) {
+        print("Open sendDataToRN Emitter",demoValue as Any)
+//      if
+//        let module = DemoEmitter1.demoEmitterModule,
+//        module.bridge != nil
+//      {
+//        module.sendEvent(withName: Constants.openEventName, body: demoValue)
+//      }else {
+//      return false
+//        }
+      
+      if let module = DemoEmitter1.demoEmitterModule,
         module.bridge != nil
       {
-        module.sendEvent(withName: Constants.openEventName, body: payloadDict)
+        module.sendEvent(withName: Constants.openEventName, body: demoValue)
       } else {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-          _ = self.open(demoValue: demoValue)
+          _ = self.sendDataToRN(demoValue: demoValue)
         })
       }
-      return true
-        } else {
-      return false
-        }
-    }
+  }
 
 }
 

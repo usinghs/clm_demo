@@ -12,6 +12,7 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
   
   @objc public func getDataFromRN(_ value: String?) {
   print("value from RN===",value as Any)
+    DemoEmitterManager1.sendDataToRN(demoValue: value!);
   }
   
    @objc public func sendHTMLPath(_ htmlpath: String?) {

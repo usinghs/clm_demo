@@ -22,6 +22,7 @@ class App extends React.Component {
   }
 
   _handleDemoEmitterLink = (payloadObject) => {
+    console.log('payloadObject', payloadObject);
     if (!payloadObject) {
       return;
     }
