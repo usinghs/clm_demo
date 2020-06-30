@@ -1,17 +1,17 @@
 import Foundation
 
 /// DemoEmitter Swift class
-class DemoEmitter {
+class DemoEmitter1 {
 
     struct Constants {
         static let openEventName = "sendKPIEvent"
     }
     
     /// Shared Instance.
-    static var shared = DemoEmitter()
+    static var shared = DemoEmitter1()
 
     // DeeplinkModule is instantiated by React Native with the bridge.
-    private static var demoEmitterModule: DemoEmitterModule?
+    private static var demoEmitterModule: DemoEmitterModule1?
     
     private init() { }
   
@@ -24,35 +24,35 @@ class DemoEmitter {
     }()
   
     // When React Native instantiates the emitter it is registered here.
-    func register(demoEmitterModule: DemoEmitterModule) {
-        DemoEmitter.demoEmitterModule = demoEmitterModule
+    func register(demoEmitterModule: DemoEmitterModule1) {
+        DemoEmitter1.demoEmitterModule = demoEmitterModule
     }
     
     /// Open deeplink
     ///
     /// - Parameter deeplink: navigation target
-    func open(deeplink: String) -> Bool {
-        print("Open",deeplink as Any)
+    func open(demoValue: String) -> Bool {
+        print("Open",demoValue as Any)
         if
-			let url = URL(string: deeplink),
+      let url = URL(string: demoValue),
             let params = url.queryParameters,
             let payload = params["payload"],
             let payloadData = payload.data(using: .utf8),
             let payloadDict = try? JSONSerialization.jsonObject(with: payloadData, options: [])
         {
-			if
-				let module = DemoEmitter.demoEmitterModule,
-				module.bridge != nil
-			{
-				module.sendEvent(withName: Constants.openEventName, body: payloadDict)
-			} else {
-				DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-					_ = self.open(deeplink: deeplink)
-				})
-			}
-			return true
+      if
+        let module = DemoEmitter1.demoEmitterModule,
+        module.bridge != nil
+      {
+        module.sendEvent(withName: Constants.openEventName, body: payloadDict)
+      } else {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+          _ = self.open(demoValue: demoValue)
+        })
+      }
+      return true
         } else {
-			return false
+      return false
         }
     }
 

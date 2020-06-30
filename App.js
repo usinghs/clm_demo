@@ -4,8 +4,9 @@
 
 import * as React from 'react';
 import {View, NativeModules, Button, NativeEventEmitter} from 'react-native';
-import {DemoEmitterModule} from './DemoEmitterModule';
+// import {DemoEmitterModule} from './DemoEmitterModule';
 
+const DemoEmitterModule = NativeModules.DemoEmitterModule1;
 const DemoModuleEmitter = new NativeEventEmitter(DemoEmitterModule);
 
 class App extends React.Component {
@@ -58,7 +59,7 @@ class App extends React.Component {
   };
 
   tapHere2 = () => {
-    NativeModules.DemoEmitterModule.open('{"test":"hello"}');
+    NativeModules.NativeCommunication.getDataFromRN('{"tag": "hello"}');
   };
 
   // tapHere2 = () => {

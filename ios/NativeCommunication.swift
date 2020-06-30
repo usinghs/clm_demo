@@ -10,6 +10,10 @@ struct NativeEvents {
 @objc(NativeCommunication)
 public class NativeCommunication: UIViewController, WKNavigationDelegate {
   
+  @objc public func getDataFromRN(_ value: String?) {
+  print("value from RN===",value as Any)
+  }
+  
    @objc public func sendHTMLPath(_ htmlpath: String?) {
     print("htmlpath from RN===",htmlpath as Any)
      
