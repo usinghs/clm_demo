@@ -35,8 +35,6 @@ class App extends React.Component {
       return;
     }
 
-    let payloadVal;
-
     // // This is required as Android sends notification data using Map with key as payload
     // if (isAndroid) {
     //   payloadVal = JSON.parse(payloadObject.payload);
