@@ -12,6 +12,9 @@
 		1125620E24AB63A400050A55 /* DemoEmitter1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1125620524AB5CEF00050A55 /* DemoEmitter1.swift */; };
 		1125620F24AB63AB00050A55 /* DemoEmitterManager1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1125620724AB5D4900050A55 /* DemoEmitterManager1.swift */; };
 		1125621124AB64A200050A55 /* DemoEmitterModule1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1125620924AB5D7400050A55 /* DemoEmitterModule1.swift */; };
+		1125626224ACB7C800050A55 /* PresentationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1125626124ACB7C700050A55 /* PresentationView.m */; };
+		1125626524ACB8A800050A55 /* PresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1125626424ACB8A800050A55 /* PresentationViewController.m */; };
+		1125626824ACB9BC00050A55 /* PresentationViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1125626724ACB9BC00050A55 /* PresentationViewer.m */; };
 		126A436BE94F22E07074D798 /* libPods-demoweb-demowebTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E651C627A531E9648B1887 /* libPods-demoweb-demowebTests.a */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -51,6 +54,12 @@
 		1125620724AB5D4900050A55 /* DemoEmitterManager1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoEmitterManager1.swift; sourceTree = "<group>"; };
 		1125620924AB5D7400050A55 /* DemoEmitterModule1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoEmitterModule1.swift; sourceTree = "<group>"; };
 		1125620C24AB5D9D00050A55 /* DemoEmiiterBridge1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoEmiiterBridge1.m; sourceTree = "<group>"; };
+		1125626024ACB7C700050A55 /* PresentationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentationView.h; sourceTree = "<group>"; };
+		1125626124ACB7C700050A55 /* PresentationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentationView.m; sourceTree = "<group>"; };
+		1125626324ACB8A800050A55 /* PresentationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentationViewController.h; sourceTree = "<group>"; };
+		1125626424ACB8A800050A55 /* PresentationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentationViewController.m; sourceTree = "<group>"; };
+		1125626624ACB9BC00050A55 /* PresentationViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentationViewer.h; sourceTree = "<group>"; };
+		1125626724ACB9BC00050A55 /* PresentationViewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentationViewer.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* demoweb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demoweb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = demoweb/Images.xcassets; sourceTree = "<group>"; };
@@ -148,6 +157,12 @@
 				1125620724AB5D4900050A55 /* DemoEmitterManager1.swift */,
 				1125620924AB5D7400050A55 /* DemoEmitterModule1.swift */,
 				1125620C24AB5D9D00050A55 /* DemoEmiiterBridge1.m */,
+				1125626024ACB7C700050A55 /* PresentationView.h */,
+				1125626124ACB7C700050A55 /* PresentationView.m */,
+				1125626324ACB8A800050A55 /* PresentationViewController.h */,
+				1125626424ACB8A800050A55 /* PresentationViewController.m */,
+				1125626624ACB9BC00050A55 /* PresentationViewer.h */,
+				1125626724ACB9BC00050A55 /* PresentationViewer.m */,
 			);
 			name = demoweb;
 			sourceTree = "<group>";
@@ -550,10 +565,13 @@
 				1125620E24AB63A400050A55 /* DemoEmitter1.swift in Sources */,
 				1125621124AB64A200050A55 /* DemoEmitterModule1.swift in Sources */,
 				74CACBDB24A3C03A00E50F98 /* AppDelegate.swift in Sources */,
+				1125626824ACB9BC00050A55 /* PresentationViewer.m in Sources */,
 				74CACB6D24A3ACB600E50F98 /* NativeCommunication.swift in Sources */,
+				1125626224ACB7C800050A55 /* PresentationView.m in Sources */,
 				1125620D24AB5D9D00050A55 /* DemoEmiiterBridge1.m in Sources */,
 				74CACB9524A3ADA000E50F98 /* NativeCommunicationBridge.m in Sources */,
 				1125620F24AB63AB00050A55 /* DemoEmitterManager1.swift in Sources */,
+				1125626524ACB8A800050A55 /* PresentationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
