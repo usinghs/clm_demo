@@ -64,7 +64,20 @@ class App extends React.Component {
   };
 
   tapHere1 = () => {
-    NativeModules.NativeCommunication.sendHTMLPath('/Check/demo.html');
+    RNFS.readDir(RNFS.DocumentDirectoryPath + '/a3E6F000000gcLIUAY')
+      .then((files) => {
+        console.log('files', files);
+        console.log(
+          'Path',
+          RNFS.DocumentDirectoryPath + '/a3E6F000000gcLIUAY/index.html',
+        );
+        NativeModules.NativeCommunication.sendHTMLPath(
+          RNFS.DocumentDirectoryPath + '/a3E6F000000gcLIUAY/index.html',
+        );
+      })
+      .catch((err) => {
+        console.log(err.message, err.code);
+      });
   };
 
   tapHere2 = () => {
@@ -144,7 +157,7 @@ class App extends React.Component {
           color="#FF6347"
         /> */}
         <Button
-          onPress={this.readFileDirectory()}
+          onPress={this.readFileDirectory}
           title="Read file directory"
           color="#FF6347"
         />

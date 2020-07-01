@@ -17,7 +17,16 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
   
    @objc public func sendHTMLPath(_ htmlpath: String?) {
     print("htmlpath from RN===",htmlpath as Any)
-     
+    
+    // Call Objc method from here
+    let objcClassObject = PresentationViewController1();
+    
+    DispatchQueue.main.async { [weak self] in
+      let appDelegate = UIApplication.shared.delegate
+      let controller = appDelegate?.window??.rootViewController
+      controller?.view.addSubview(objcClassObject.view)
+      objcClassObject.loadURL(htmlpath!);
+    }
     // This is Native UIDocumentMenuViewController open
 //    DispatchQueue.main.async {
 //        let documentProviderMenu: UIDocumentMenuViewController = UIDocumentMenuViewController(documentTypes: ["public.data"], in: .import)
@@ -31,27 +40,27 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
 //    }
     
     // This is logic to get the file path from iOS File manager and load in to WKWebview.
-    let fromRNFilePathStr: String = htmlpath!
-    var replacedPath: String = "";
-    let fileManager = FileManager.default
-    if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-        print("directory path:", documentsURL.path)
-     let initialFilePath = documentsURL.path
-      replacedPath = initialFilePath.replacingOccurrences(of: "/Documents", with: fromRNFilePathStr)
-     print("replaced path:", replacedPath)
-    }
-    let finalURL = URL(string:"file://" + "Users/singhshu/Library/Developer/CoreSimulator/Devices/B9AFCC6A-8F96-4A5B-B681-290CEF5B28EB/data/Containers/Data/Application/8441652D-C707-408E-980E-D093BAA15F1D/Documents/a3E6F000000gcLIUAY/index.html")
-    print("finalURL ===", finalURL!)
-          DispatchQueue.main.async { [weak self] in
-            let appDelegate = UIApplication.shared.delegate
-            let controller = appDelegate?.window??.rootViewController
-            let webview = WKWebView()
-            webview.frame  = CGRect(x: 0, y: 250, width: UIScreen.main.bounds.width, height: 500)
-            webview.loadFileURL(finalURL!, allowingReadAccessTo: finalURL!)
-            webview.load(URLRequest(url: finalURL!))
-            webview.allowsBackForwardNavigationGestures = true
-            controller?.view.addSubview(webview)
-      }
+//    let fromRNFilePathStr: String = htmlpath!
+//    var replacedPath: String = "";
+//    let fileManager = FileManager.default
+//    if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+//        print("directory path:", documentsURL.path)
+//     let initialFilePath = documentsURL.path
+//      replacedPath = initialFilePath.replacingOccurrences(of: "/Documents", with: fromRNFilePathStr)
+//     print("replaced path:", replacedPath)
+//    }
+//    let finalURL = URL(string:"file://" + "Users/singhshu/Library/Developer/CoreSimulator/Devices/B9AFCC6A-8F96-4A5B-B681-290CEF5B28EB/data/Containers/Data/Application/8441652D-C707-408E-980E-D093BAA15F1D/Documents/a3E6F000000gcLIUAY/index.html")
+//    print("finalURL ===", finalURL!)
+//          DispatchQueue.main.async { [weak self] in
+//            let appDelegate = UIApplication.shared.delegate
+//            let controller = appDelegate?.window??.rootViewController
+//            let webview = WKWebView()
+//            webview.frame  = CGRect(x: 0, y: 250, width: UIScreen.main.bounds.width, height: 500)
+//            webview.loadFileURL(finalURL!, allowingReadAccessTo: finalURL!)
+//            webview.load(URLRequest(url: finalURL!))
+//            webview.allowsBackForwardNavigationGestures = true
+//            controller?.view.addSubview(webview)
+//      }
    }
 }
 
