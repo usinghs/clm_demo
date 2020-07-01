@@ -6,8 +6,11 @@
 //
 
 #import "PresentationViewController1.h"
+#import "demoweb-Swift.h"
 
-@interface PresentationViewController1 ()
+@interface PresentationViewController1 (){
+  UIWebView *webview;
+}
 
 @end
 
@@ -15,30 +18,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+  UIButton *but= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [but addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+   [but setFrame:CGRectMake(1200, 600, 200, 100)];
+  [but setTitle:@"Login" forState:UIControlStateNormal];
+  [but setExclusiveTouch:YES];
+  [self.view addSubview:but];
+  self.view.userInteractionEnabled = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)loadURL:(NSString *)url{
   NSLog(@"Get string from Swift class ===%@",url);
-//  url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-//  [self.webView loadRequest:request];
-//  UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
-//  NSString *urlString = @"https://www.google.com";
-//  NSURL *newurl = [NSURL URLWithString:urlString];
-//  NSURLRequest *request = [NSURLRequest requestWithURL:newurl];
-//  [webView loadRequest:request];
-//  [self.view addSubview:webView];
   
-  UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
+  webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-200,self.view.frame.size.height-100)];
   webview.allowsInlineMediaPlayback = YES;
   webview.mediaPlaybackRequiresUserAction = NO;
-  NSString *urlString=@"https://www.google.com";
   NSURL *nsurl=[NSURL URLWithString:url];
   NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
   [webview loadRequest:nsrequest];
   [self.view addSubview:webview];
 }
+
+-(void) buttonClicked:(UIButton*)sender
+ {
+   NSLog(@"you clicked on button %@", sender.tag);
+   NativeCommunication *nativeCommunicationObj = [NativeCommunication new];
+   NSString *kpi = [webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"executeMethod('%@');", @"getKPI"]];
+   NSLog(@"KPI ===%@",kpi);
+   [nativeCommunicationObj getDataFromRN:kpi];
+ }
 
 /*
 #pragma mark - Navigation

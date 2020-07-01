@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NativeCommunication;
 
 NS_ASSUME_NONNULL_BEGIN
 

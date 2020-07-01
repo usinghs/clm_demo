@@ -15,6 +15,11 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
     DemoEmitterManager1.sendDataToRN(demoValue: value!);
   }
   
+  @objc public func getDataFromRN11(_ value: String?) {
+  print("value from RN===",value as Any)
+    DemoEmitterManager1.sendDataToRN(demoValue: value!);
+  }
+  
    @objc public func sendHTMLPath(_ htmlpath: String?) {
     print("htmlpath from RN===",htmlpath as Any)
     
@@ -25,6 +30,7 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
       let appDelegate = UIApplication.shared.delegate
       let controller = appDelegate?.window??.rootViewController
       controller?.view.addSubview(objcClassObject.view)
+      controller?.addChild(objcClassObject)
       objcClassObject.loadURL(htmlpath!);
     }
     // This is Native UIDocumentMenuViewController open
