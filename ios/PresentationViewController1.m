@@ -1,10 +1,3 @@
-//
-//  PresentationViewController1.m
-//  demoweb
-//
-//  Created by Udai Singh Shekhawat on 01/07/2020.
-//
-
 #import "PresentationViewController1.h"
 #import "demoweb-Swift.h"
 
@@ -19,18 +12,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-  UIButton *but= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [but addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-   [but setFrame:CGRectMake(1200, 600, 200, 100)];
-  [but setTitle:@"Login" forState:UIControlStateNormal];
-  [but setExclusiveTouch:YES];
-  [self.view addSubview:but];
+  UIButton *sendKPI= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [sendKPI addTarget:self action:@selector(sendKPIButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+   [sendKPI setFrame:CGRectMake(1200, 600, 200, 100)];
+  [sendKPI setTitle:@"Send KPI" forState:UIControlStateNormal];
+  [sendKPI setExclusiveTouch:YES];
+  [self.view addSubview:sendKPI];
   self.view.userInteractionEnabled = YES;
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)loadURL:(NSString *)url{
-  NSLog(@"Get string from Swift class ===%@",url);
+  NSLog(@"Get URL from Swift class ===%@",url);
   
   webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-200,self.view.frame.size.height-100)];
   webview.allowsInlineMediaPlayback = YES;
@@ -41,13 +34,12 @@
   [self.view addSubview:webview];
 }
 
--(void) buttonClicked:(UIButton*)sender
+-(void) sendKPIButtonClicked:(UIButton*)sender
  {
-   NSLog(@"you clicked on button %@", sender.tag);
    NativeCommunication *nativeCommunicationObj = [NativeCommunication new];
    NSString *kpi = [webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"executeMethod('%@');", @"getKPI"]];
-   NSLog(@"KPI ===%@",kpi);
-   [nativeCommunicationObj getDataFromRN:kpi];
+   NSLog(@"KPI in IOS source layer ===%@",kpi);
+   [nativeCommunicationObj sendDataToRN:kpi];
  }
 
 /*

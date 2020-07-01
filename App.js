@@ -8,10 +8,8 @@ import {
   NativeModules,
   Button,
   NativeEventEmitter,
-  FlatList,
   Text,
 } from 'react-native';
-// import {DemoEmitterModule} from './DemoEmitterModule';
 import * as RNFS from 'react-native-fs';
 
 const DemoEmitterModule = NativeModules.DemoEmitterModule1;
@@ -29,36 +27,11 @@ class App extends React.Component {
     );
   }
 
-  _handleDemoEmitterLink = (payloadObject) => {
-    console.log('payloadObject', payloadObject);
-    if (!payloadObject) {
+  _handleDemoEmitterLink = (kpiObject) => {
+    console.log('KPI in React Native layer', kpiObject);
+    if (!kpiObject) {
       return;
     }
-
-    // // This is required as Android sends notification data using Map with key as payload
-    // if (isAndroid) {
-    //   payloadVal = JSON.parse(payloadObject.payload);
-    // }
-    // const payload = payloadVal ? payloadVal : payloadObject;
-
-    // const businessUnitId = get(payloadObject, 'businessUnitId', '');
-    // const pushNotifyAgentGroupId = get(payload, 'agentGroupId', '');
-    // if (
-    //   (payloadObject &&
-    //     payloadObject.payload &&
-    //     payloadObject.payload.includes('businessUnitId')) ||
-    //   businessUnitId.length > 0
-    // ) {
-    //   this.props.setDeeplinkStates(
-    //     true,
-    //     routes.NUANCE_LIVE_CHAT_DeepLink,
-    //     pushNotifyAgentGroupId
-    //   );
-    //   return;
-    // }
-    // if (payload.action === 'DEEPLINK') {
-    //   this.props.setDeeplinkStates(true, payload.value);
-    // }
   };
 
   tapHere1 = () => {
@@ -83,7 +56,6 @@ class App extends React.Component {
   };
 
   readFileDirectory = () => {
-    //readDir(dirpath: string)
     RNFS.readDir(RNFS.DocumentDirectoryPath)
       .then((files) => {
         console.log('files', files);
@@ -93,23 +65,6 @@ class App extends React.Component {
         console.log(err.message, err.code);
       });
   };
-
-  // tapHere2 = () => {
-  //   NativeModules.NativeCommunication.sendHTMLPath('/Check/test.pdf');
-  // };
-
-  // tapHere3 = () => {
-  //   NativeModules.NativeCommunication.sendHTMLPath(
-  //     '/Check/test-presentation.pptx',
-  //   );
-  // };
-
-  // componentDidMount() {
-  //   // const AddRatingManagerEvent = new NativeEventEmitter(NativeCommunication);
-  //   // this._subscription = AddRatingManagerEvent.addListener('onclose', info => {
-  //   //   console.log('from Native  json ===', JSON.stringify(info));
-  //   // });
-  // }
 
   renderItem = (item, index) => {
     console.log('item', item);
@@ -121,7 +76,6 @@ class App extends React.Component {
   };
 
   getFilePaths = () => {
-    let filesValue;
     RNFS.readDir(RNFS.DocumentDirectoryPath)
       .then((files) => {
         console.log('files', files);
@@ -147,23 +101,11 @@ class App extends React.Component {
 
         <Button onPress={this.tapHere2} title="Open" color="#FF6347" />
 
-        {/* <Button onPress={this.tapHere2} title="Open Test PDF" color="#FF6347" />
-
-        <Button
-          onPress={this.tapHere3}
-          title="Open Test Presentation"
-          color="#FF6347"
-        /> */}
         <Button
           onPress={this.readFileDirectory}
           title="Read file directory"
           color="#FF6347"
         />
-        {/* <FlatList
-          data={this.getFilePaths}
-          renderItem={this.renderItem()}
-          keyExtractor={(item) => item.key}
-        /> */}
       </View>
     );
   }

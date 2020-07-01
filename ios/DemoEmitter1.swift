@@ -31,24 +31,16 @@ class DemoEmitter1 {
     /// Open deeplink
     ///
     /// - Parameter deeplink: navigation target
-    func sendDataToRN(demoValue: String) {
-        print("Open sendDataToRN Emitter",demoValue as Any)
-//      if
-//        let module = DemoEmitter1.demoEmitterModule,
-//        module.bridge != nil
-//      {
-//        module.sendEvent(withName: Constants.openEventName, body: demoValue)
-//      }else {
-//      return false
-//        }
+    func sendDataToRN(dataToRN: String) {
+        print("Open sendDataToRN Emitter",dataToRN as Any)
       
       if let module = DemoEmitter1.demoEmitterModule,
         module.bridge != nil
       {
-        module.sendEvent(withName: Constants.openEventName, body: demoValue)
+        module.sendEvent(withName: Constants.openEventName, body: dataToRN)
       } else {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-          _ = self.sendDataToRN(demoValue: demoValue)
+          _ = self.sendDataToRN(dataToRN: dataToRN)
         })
       }
   }

@@ -12,12 +12,12 @@ public class NativeCommunication: UIViewController, WKNavigationDelegate {
   
   @objc public func getDataFromRN(_ value: String?) {
   print("value from RN===",value as Any)
-    DemoEmitterManager1.sendDataToRN(demoValue: value!);
+    DemoEmitterManager1.sendDataToRN(dataToRN: value!);
   }
   
-  @objc public func getDataFromRN11(_ value: String?) {
+  @objc public func sendDataToRN(_ value: String?) {
   print("value from RN===",value as Any)
-    DemoEmitterManager1.sendDataToRN(demoValue: value!);
+    DemoEmitterManager1.sendDataToRN(dataToRN: value!);
   }
   
    @objc public func sendHTMLPath(_ htmlpath: String?) {
